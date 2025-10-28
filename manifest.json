@@ -3,7 +3,7 @@
   "name": "LaTeX Snippets",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "A sidebar plugin that provides easy access to LaTeX snippets and commands",
+  "description": "A sidebar plugin that provides easy access to LaTeX snippets and commands.",
   "author": "mzhyui",
   "authorUrl": "https://mzhyui.github.io",
   "isDesktopOnly": false
