@@ -1,8 +1,111 @@
-/*
+/* styles.css */
+.latex-snippets-view {
+    padding: 10px;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.search-container {
+    margin-bottom: 15px;
+}
 
-If your plugin does not need CSS, delete this file.
+.latex-search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+}
 
-*/
+.snippets-container {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.snippet-category {
+    margin-bottom: 20px;
+}
+
+.category-title {
+    margin: 0 0 10px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+    color: var(--text-muted);
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.snippets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.snippet-item {
+    padding: 8px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background: var(--background-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none; /* Prevent text selection */
+}
+
+.snippet-item:hover,
+.snippet-item.snippet-hover {
+    background: var(--background-modifier-hover);
+    border-color: var(--text-accent);
+    transform: translateX(2px);
+}
+
+.snippet-item:active {
+    background: var(--background-modifier-active-hover);
+    transform: translateX(1px);
+}
+
+.snippet-name {
+    font-weight: 500;
+    color: var(--text-normal);
+    font-size: 0.9em;
+}
+
+.snippet-command {
+    font-family: var(--font-monospace);
+    color: var(--text-accent);
+    font-size: 0.85em;
+    margin-top: 2px;
+}
+
+.snippet-description {
+    color: var(--text-muted);
+    font-size: 0.8em;
+    margin-top: 2px;
+}
+
+/* Make sure clicks are registered properly */
+.snippet-item * {
+    pointer-events: none;
+}
+
+/* Dark theme adjustments */
+.theme-dark .latex-search-input {
+    background: var(--background-primary-alt);
+}
+
+.theme-dark .snippet-item {
+    background: var(--background-primary-alt);
+}
+
+.theme-dark .snippet-item:hover,
+.theme-dark .snippet-item.snippet-hover {
+    background: var(--background-modifier-hover);
+}
+
+.snippet-delete-button {
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.snippet-item {
+    position: relative;
+}

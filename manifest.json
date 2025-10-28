@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+  "id": "latex-snippets",
+  "name": "LaTeX Snippets",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "A sidebar plugin that provides easy access to LaTeX snippets and commands",
+  "author": "mzhyui",
+  "authorUrl": "https://mzhyui.github.io",
+  "isDesktopOnly": false
 }
