@@ -109,3 +109,25 @@
 .snippet-item {
     position: relative;
 }
+
+.snippet-item.is-hidden,
+.snippet-category.is-hidden {
+    display: none !important;
+}
+
+.snippet-item.is-visible,
+.snippet-category.is-visible {
+    display: block;
+}
+
+/* Optional: Add smooth transitions */
+.snippet-item,
+.snippet-category {
+    transition: opacity 0.2s ease;
+}
+
+.snippet-item.is-hidden,
+.snippet-category.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}

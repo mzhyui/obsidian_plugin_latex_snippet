@@ -1,6 +1,6 @@
 {
   "name": "latex-snippets",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A sidebar plugin that provides easy access to LaTeX snippets",
   "main": "main.js",
   "scripts": {

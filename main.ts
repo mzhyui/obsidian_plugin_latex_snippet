@@ -37,8 +37,8 @@ export default class LatexSnippetsPlugin extends Plugin {
 
         // Add command to open sidebar
         this.addCommand({
-            id: 'open-latex-snippets',
-            name: 'Open LaTeX Snippets',
+            id: 'open-sidebar',
+            name: 'Open Sidebar',
             callback: () => {
                 this.activateView();
             }
@@ -49,7 +49,9 @@ export default class LatexSnippetsPlugin extends Plugin {
     }
 
     onunload() {
-        this.app.workspace.detachLeavesOfType(VIEW_TYPE_LATEX_SNIPPETS);
+        // this.app.workspace.detachLeavesOfType(VIEW_TYPE_LATEX_SNIPPETS);
+        // Don't detach leaves - let users manage their own workspace
+        // Only clean up resources and unregister the view type
     }
 
     async activateView() {

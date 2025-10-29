@@ -645,20 +645,25 @@ export class LatexSnippetsView extends ItemView {
             const command = item.getAttribute('data-command') || '';
             
             if (name.includes(searchTerm) || command.includes(searchTerm)) {
-                (item as HTMLElement).style.display = 'block';
+                item.removeClass('is-hidden');
+                item.addClass('is-visible');
             } else {
-                (item as HTMLElement).style.display = 'none';
+                item.removeClass('is-visible');
+                item.addClass('is-hidden');
             }
         });
 
         // Hide empty categories
         const categories = this.containerEl.querySelectorAll('.snippet-category');
         categories.forEach(category => {
-            const visibleItems = category.querySelectorAll('.snippet-item[style="display: block"], .snippet-item:not([style*="display: none"])');
+            const visibleItems = category.querySelectorAll('.snippet-item.is-visible, .snippet-item:not(.is-hidden)');
+            
             if (visibleItems.length === 0) {
-                (category as HTMLElement).style.display = 'none';
+                category.removeClass('is-visible');
+                category.addClass('is-hidden');
             } else {
-                (category as HTMLElement).style.display = 'block';
+                category.removeClass('is-hidden');
+                category.addClass('is-visible');
             }
         });
     }

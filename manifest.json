@@ -1,7 +1,7 @@
 {
   "id": "latex-snippets",
   "name": "LaTeX Snippets",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "0.15.0",
   "description": "A sidebar plugin that provides easy access to LaTeX snippets and commands.",
   "author": "mzhyui",
