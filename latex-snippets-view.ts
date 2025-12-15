@@ -1,5 +1,5 @@
 // import { ItemView, WorkspaceLeaf, MarkdownView, Editor } from 'obsidian';
-import { ItemView, WorkspaceLeaf, MarkdownView, Editor, Notice, Modal, Setting } from 'obsidian';
+import { ItemView, WorkspaceLeaf, MarkdownView, Editor, Notice, Modal, Setting, App } from 'obsidian';
 import LatexSnippetsPlugin, { LatexSnippet } from './main';
 
 export const VIEW_TYPE_LATEX_SNIPPETS = 'latex-snippets-view';
@@ -8,7 +8,7 @@ class AddSnippetModal extends Modal {
     plugin: LatexSnippetsPlugin;
     onSubmit: (snippet: LatexSnippet) => void;
 
-    constructor(app: any, plugin: LatexSnippetsPlugin, onSubmit: (snippet: LatexSnippet) => void) {
+    constructor(app: App, plugin: LatexSnippetsPlugin, onSubmit: (snippet: LatexSnippet) => void) {
         super(app);
         this.plugin = plugin;
         this.onSubmit = onSubmit;
@@ -122,7 +122,7 @@ export class LatexSnippetsView extends ItemView {
             this.openAddSnippetModal();
         });
 
-        this.createSnippetsContainer(container);
+        await this.createSnippetsContainer(container);
     }
 
     private openAddSnippetModal() {
@@ -263,7 +263,7 @@ export class LatexSnippetsView extends ItemView {
                     
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('Snippet clicked:', snippet.command);
+                    console.debug('Snippet clicked:', snippet.command);
                     this.insertSnippet(snippet.command);
                 });
 
@@ -669,18 +669,18 @@ export class LatexSnippetsView extends ItemView {
     }
 
     private async insertSnippet(command: string) {
-        console.log('Attempting to insert snippet:', command); // Debug log
+        console.debug('Attempting to insert snippet:', command); // Debug log
         
         // Try multiple methods to get the active editor
         const activeView = this.app.workspace.getActiveViewOfType(MarkdownView);
         
         if (!activeView) {
-            console.log('No active MarkdownView found'); // Debug log
+            console.debug('No active MarkdownView found'); // Debug log
             // Try to get any markdown view
             const markdownViews = this.app.workspace.getLeavesOfType('markdown');
             if (markdownViews.length > 0) {
                 const leaf = markdownViews[0];
-                await this.app.workspace.setActiveLeaf(leaf);
+                this.app.workspace.setActiveLeaf(leaf);
                 const view = leaf.view as MarkdownView;
                 if (view && view.editor) {
                     this.performInsertion(view.editor, command);
@@ -695,7 +695,7 @@ export class LatexSnippetsView extends ItemView {
 
         const editor = activeView.editor;
         if (!editor) {
-            console.log('No editor found in active view'); // Debug log
+            console.debug('No editor found in active view'); // Debug log
             new Notice('No editor available');
             return;
         }
@@ -704,11 +704,11 @@ export class LatexSnippetsView extends ItemView {
     }
 
     private performInsertion(editor: Editor, command: string) {
-        console.log('Performing insertion:', command); // Debug log
+        console.debug('Performing insertion:', command); // Debug log
         
         try {
             const cursor = editor.getCursor();
-            console.log('Current cursor position:', cursor); // Debug log
+            console.debug('Current cursor position:', cursor); // Debug log
             
             // Insert the command at cursor position
             editor.replaceRange(command, cursor);
@@ -725,7 +725,7 @@ export class LatexSnippetsView extends ItemView {
                         ch: cursor.ch + firstBraceIndex + 1
                     };
                     editor.setCursor(newCursor);
-                    console.log('Cursor positioned at:', newCursor); // Debug log
+                    console.debug('Cursor positioned at:', newCursor); // Debug log
                 }
             } else {
                 // Position cursor at the end of the inserted text
@@ -734,7 +734,7 @@ export class LatexSnippetsView extends ItemView {
                     ch: cursor.ch + command.length
                 };
                 editor.setCursor(newCursor);
-                console.log('Cursor positioned at end:', newCursor); // Debug log
+                console.debug('Cursor positioned at end:', newCursor); // Debug log
             }
             
             // Focus the editor

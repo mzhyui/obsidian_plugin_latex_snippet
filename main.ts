@@ -93,7 +93,10 @@ class LatexSnippetsSettingTab extends PluginSettingTab {
         const { containerEl } = this;
 
         containerEl.empty();
-        containerEl.createEl('h2', { text: 'LaTeX Snippets Settings' });
+        new Setting(containerEl)
+            .setName('LaTeX Snippets Settings')
+            .setHeading();
+
 
         new Setting(containerEl)
             .setName('Custom Snippets')
